@@ -1,24 +1,7 @@
 <body class="bg-body-tertiary">
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Country Details</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Select</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Search</a>
-          </li>
-          </ul>
-      </div>
-    </div>
-  </nav>
+<app-header/>
   <div class="container mt-3">
-  <form>
+  <form #f="ngForm">
   <div>
     <label for="selectedCountry" class="form-label">Select Country</label>
     <div class="mb-3">
@@ -39,7 +22,6 @@
       <label for="countryName" class="form-label">Country</label>
       <input class="form-control"
         name="countryName"
-        matInput
         placeholder="name"
         [(ngModel)]="country.name"
         name="country.name"
@@ -64,8 +46,8 @@
         <div class="mb-3">
           <label for="capital" class="form-label">Capital</label>
           <input class=" form-control"
+            id="capital"
             name="capital"
-            matInput
             placeholder="capital"
             [(ngModel)]="country.capital"
             name="country.capital"
@@ -80,7 +62,6 @@
       <label for="officialName" class="form-label">Official Name</label>
       <input class="form-control"
         name="officialName"
-        matInput
         placeholder="officialName"
         [(ngModel)]="country.officialName"
         name="country.officialName"
@@ -94,7 +75,6 @@
         <label for="region" class="form-label">Region</label>
     <input class="form-control"
       name="region"
-      matInput
       placeholder="region"
       [(ngModel)]="country.region"
       name="country.officialName"
@@ -108,7 +88,6 @@
       <label for="subregion" class="form-label">Subregion</label>
     <input class="form-control"
       name="subregion"
-      matInput
       placeholder="subregion"
       [(ngModel)]="country.subregion"
       id="name"
@@ -123,7 +102,6 @@
       <label for="continent" class="form-label">Continent</label>
     <input class="form-control"
       name="continent"
-      matInput
       placeholder="continent"
       [(ngModel)]="country.continent"
       id="continent"
@@ -138,7 +116,6 @@
       <label for="population" class="form-label">Population</label>
     <input class="form-control"
       name="population"
-      matInput
       placeholder="population"
       [ngModel]="country.population | number: '2.0-0'"
       (ngModelChange)="country.population=$event"
@@ -154,7 +131,6 @@
       <label for="tld" class="form-label">Top Level Domain</label>
     <input class="form-control"
       name="tld"
-      matInput
       placeholder="tld"
       [(ngModel)]="country.tld"
       id="name"
@@ -169,7 +145,6 @@
       <label for="cca2" class="form-label">ISO 3166-1 alpha-2 two-letter country codes</label>
     <input class="form-control"
       name="cca2"
-      matInput
       placeholder="cca2"
       [(ngModel)]="country.cca2"
       id="cca2"
@@ -184,7 +159,6 @@
       <label for="cca3" class="form-label">ISO 3166-1 alpha-3 three-letter country codes</label>
     <input class="form-control"
       name="cca3"
-      matInput
       placeholder="cca3"
       [(ngModel)]="country.cca3"
       id="cca3"
@@ -200,7 +174,6 @@
     <label>Google Maps</label>
     <input class="form-control"
       name="googleMaps"
-      matInput
       placeholder="googleMaps"
       [(ngModel)]="country.googleMaps"
       id="googleMaps"
@@ -217,7 +190,6 @@
       <label for="fifa" class="form-label">Fifa Code</label>
       <input class="form-control"
       name="fifa"
-      matInput
       placeholder="fifa"
       [(ngModel)]="country.fifa"
       name="fifa"
@@ -232,7 +204,6 @@
     <label for="drivingLane" class="form-label">Driving Lane</label>
     <input class="form-control"
     name="drivingLane"
-    matInput
     placeholder="drivingLane"
     [(ngModel)]="country.drivingLane"
     name="drivingLane"
@@ -246,7 +217,6 @@
       <label for="timezones" class="form-label">Timezone</label>
       <input class="form-control"
       name="timezones"
-      matInput
       placeholder="timezones"
       [(ngModel)]="country.timezones"
       name="timezones"
@@ -259,7 +229,6 @@
       <label for="coatOfArms" class="form-label">Coat of Arms</label>
       <input class="form-control"
       name="coatOfArms"
-      matInput
       placeholder="coatOfArms"
       [(ngModel)]="country.coatOfArms"
       name="coatOfArms"
@@ -289,6 +258,13 @@
   </label>
 </div>
 
+
+
 </form>
+</div>
+<div class="container mb-3 mr-3">
+  <button (click)="onSubmit(f)" [ngClass]="'btn btn-primary'" placement="top-start" ngbTooltip="ngClass with string" tooltipClass="mb-1" [animation]="true">Submit</button>
+  <button [ngClass]="['btn','btn-danger', ' mr-1']" placement="top" ngbTooltip="ngClass with array" tooltipClass="mb-1" [animation]="true">Reset</button>
+  <button [ngClass]="{'btn':true, 'btn-secondary':true, 'mr-1':true}" placement="top" ngbTooltip="ngClass based on boolean value" tooltipClass="mb-1" [animation]="true">Confirm</button>
 </div>
 </body>

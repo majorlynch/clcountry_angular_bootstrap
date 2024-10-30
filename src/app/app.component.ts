@@ -1,7 +1,9 @@
-import { Component, Inject, Injectable } from '@angular/core';
+import { Component, ViewChild,  Inject, Injectable } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { CountryService } from './services/country.service';
 import { OnInit } from '@angular/core';
 import { Country } from './model/country.model';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +12,24 @@ import { Country } from './model/country.model';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  @ViewChild('f', {static: false}) countryForm: NgForm;
   country: Country;
+  submitCountry : Country;
   countries: string[] = [];
   selectedCountry: string = 'Ireland';
+  toolTipVisible: boolean = false;
 
   constructor(private countryService: CountryService) {
-    this.country = {
+
+
+    //this.submitCountry = {...this.country};
+    //this.signupForm = '';
+
+  }
+
+
+  ngOnInit() {
+    this.country ={
       name: '',
       capital: '',
       officialName: '',
@@ -38,9 +52,6 @@ export class AppComponent implements OnInit {
       timezones: '',
       coatOfArms: '',
     };
-  }
-
-  ngOnInit() {
     this.countryService.getCountryNames().subscribe({
       //next: data => {return data.flat();
       next: (data) => {
@@ -54,11 +65,19 @@ export class AppComponent implements OnInit {
   }
 
   onCountryChange(value: any): void {
-
     this.countryService.getCountry(value).subscribe({
       next: (data) => (this.country = data,
         console.log(this.country)
       ),
     });
+  }
+
+  onSubmit(form: NgForm)
+  {
+    console.log(form);
+    console.log(form.value)
+    console.log(form.value.fifa)
+    console.log(form.value?.country?.capital)
+    //this.submitCountry.name = '';
   }
 }
