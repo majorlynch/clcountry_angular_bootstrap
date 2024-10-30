@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "clcountry_angular_bootstrap:build:production"
+              "buildTarget": "clcountry_angular_bootstrap:build:production"
             },
             "development": {
-              "browserTarget": "clcountry_angular_bootstrap:build:development"
+              "buildTarget": "clcountry_angular_bootstrap:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "clcountry_angular_bootstrap:build"
+            "buildTarget": "clcountry_angular_bootstrap:build"
           }
         },
         "test": {
