@@ -1,173 +1,114 @@
 <body class="bg-body-tertiary">
-<app-header/>
+  <app-header />
   <div class="container mt-3">
-  <form #f="ngForm">
-  <div>
-    <label for="selectedCountry" class="form-label">Select Country</label>
-    <div class="mb-3">
-      <select class="form-select form-control"
-        name="selectedCountry"
-        [(ngModel)]="selectedCountry"
-        (ngModelChange)="onCountryChange($event)"
-      >
-        <option *ngFor="let country of countries" [value]="country">
-          {{ country }}
-        </option>
-      </select>
-    </div>
-  </div>
-  <hr />
-  <div>
-    <div class="mb-3">
-      <label for="countryName" class="form-label">Country</label>
-      <input class="form-control"
-        name="countryName"
-        placeholder="name"
-        [(ngModel)]="country.name"
-        name="country.name"
-      />
-      <a href="#" class="d-inline-block" data-bs-toggle="tooltip" data-bs-title="country.flagalt">
-      <img [src]="country.flagpng" class="img-thumbnail" [alt]="country.flagalt" />
-    </a>
-          <!--
-      <a href="#" class="d-inline-block">
-        <img [src]="country.coatOfArms" class="img-thumbnail"/>
-      </a>
-
-      <a href="#" class="d-inline-block" data-bs-toggle="tooltip" data-bs-title="country.flagalt">
-        <img [src]="country.flagsvg" class="img-thumbnail" [alt]="country.flagalt">
-    </a>
-    -->
-    </div>
-  </div>
-
-    <div>
+    <form #f="ngForm">
       <div>
+        <label for="selectedCountry" class="form-label">Select Country</label>
         <div class="mb-3">
-          <label for="capital" class="form-label">Capital</label>
-          <input class=" form-control"
-            id="capital"
-            name="capital"
-            placeholder="capital"
-            [(ngModel)]="country.capital"
-            name="country.capital"
-          />
+          <select class="form-select form-control" name="selectedCountry" [(ngModel)]="selectedCountry"
+            (ngModelChange)="onCountryChange($event)">
+            <option *ngFor="let country of countries" [value]="country">
+              {{ country }}
+            </option>
+          </select>
         </div>
       </div>
-    </div>
+      <hr />
+      <div>
+        <div class="mb-3">
+          <label for="countryName" class="form-label">Country</label>
+          <input class="form-control" name="countryName" placeholder="name" [(ngModel)]="country.name.common"
+            name="country.name" />
+          <a href="#" class="d-inline-block" data-bs-toggle="tooltip" data-bs-title="country.flagalt">
+            <img [src]="country.flags.png" class="img-thumbnail" [alt]="country.flags.alt" loading="eager"/>
+          </a>
+        </div>
+      </div>
 
-  <div>
-    <div>
-      <div class="mb-3">
-      <label for="officialName" class="form-label">Official Name</label>
-      <input class="form-control"
-        name="officialName"
-        placeholder="officialName"
-        [(ngModel)]="country.officialName"
-        name="country.officialName"
-      />
-    </div>
-  </div>
-  </div>
-  <div>
-    <div>
-      <div class="mb-3">
-        <label for="region" class="form-label">Region</label>
-    <input class="form-control"
-      name="region"
-      placeholder="region"
-      [(ngModel)]="country.region"
-      name="country.officialName"
-    />
-  </div>
-</div>
-</div>
-<div>
-  <div>
-    <div class="mb-3">
-      <label for="subregion" class="form-label">Subregion</label>
-    <input class="form-control"
-      name="subregion"
-      placeholder="subregion"
-      [(ngModel)]="country.subregion"
-      id="name"
-      name="country.subregion"
-    />
-  </div>
-</div>
-</div>
-<div>
-  <div>
-    <div class="mb-3">
-      <label for="continent" class="form-label">Continent</label>
-    <input class="form-control"
-      name="continent"
-      placeholder="continent"
-      [(ngModel)]="country.continent"
-      id="continent"
-      name="country.continent"
-    />
-  </div>
-</div>
-</div>
-<div>
-  <div>
-    <div class="mb-3">
-      <label for="population" class="form-label">Population</label>
-    <input class="form-control"
-      name="population"
-      placeholder="population"
-      [ngModel]="country.population | number: '2.0-0'"
-      (ngModelChange)="country.population=$event"
-      id="population"
-      name="country.population"
-    />
-  </div>
-</div>
-</div>
-<div>
-  <div>
-    <div class="mb-3">
-      <label for="tld" class="form-label">Top Level Domain</label>
-    <input class="form-control"
-      name="tld"
-      placeholder="tld"
-      [(ngModel)]="country.tld"
-      id="name"
-      name="country.tld"
-    />
-  </div>
-</div>
-</div>
-<div>
-  <div>
-    <div class="mb-3">
-      <label for="cca2" class="form-label">ISO 3166-1 alpha-2 two-letter country codes</label>
-    <input class="form-control"
-      name="cca2"
-      placeholder="cca2"
-      [(ngModel)]="country.cca2"
-      id="cca2"
-      name="country.cca2"
-    />
-  </div>
-</div>
-</div>
-<div>
-  <div>
-    <div class="mb-3">
-      <label for="cca3" class="form-label">ISO 3166-1 alpha-3 three-letter country codes</label>
-    <input class="form-control"
-      name="cca3"
-      placeholder="cca3"
-      [(ngModel)]="country.cca3"
-      id="cca3"
-      name="country.cca3"
-    />
-  </div>
-</div>
-</div>
-<!--
+      <div>
+        <div>
+          <div class="mb-3">
+            <label for="capital" class="form-label">Capital</label>
+            <input class=" form-control" id="capital" name="capital" placeholder="capital" [(ngModel)]="country.capital"
+              name="country.capital" />
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <div class="mb-3">
+            <label for="officialName" class="form-label">Official Name</label>
+            <input class="form-control" name="officialName" placeholder="officialName"
+              [(ngModel)]="country.name.official" name="country.officialName" />
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <div class="mb-3">
+            <label for="region" class="form-label">Region</label>
+            <input class="form-control" name="region" placeholder="region" [(ngModel)]="country.region"
+              name="country.officialName" />
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <div class="mb-3">
+            <label for="subregion" class="form-label">Subregion</label>
+            <input class="form-control" name="subregion" placeholder="subregion" [(ngModel)]="country.subregion"
+              id="name" name="country.subregion" />
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <div class="mb-3">
+            <label for="continent" class="form-label">Continent</label>
+            <input class="form-control" name="continent" placeholder="continent" [(ngModel)]="country.continents"
+              id="continent" name="country.continent" />
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <div class="mb-3">
+            <label for="population" class="form-label">Population</label>
+            <input class="form-control" name="population" placeholder="population"
+              [ngModel]="country.population | number: '2.0-0'" (ngModelChange)="country.population=$event"
+              id="population" name="country.population" />
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <div class="mb-3">
+            <label for="tld" class="form-label">Top Level Domain</label>
+            <input class="form-control" name="tld" placeholder="tld" [(ngModel)]="country.tld" id="name"
+              name="country.tld" />
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <div class="mb-3">
+            <label for="cca2" class="form-label">2 letter country code</label>
+            <input class="form-control" name="cca2" placeholder="cca2" [(ngModel)]="country.cca2" id="cca2"
+              name="country.cca2" />
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <div class="mb-3">
+            <label for="cca3" class="form-label">3 letter country code</label>
+            <input class="form-control" name="cca3" placeholder="cca3" [(ngModel)]="country.cca3" id="cca3"
+              name="country.cca3" />
+          </div>
+        </div>
+      </div>
+      <!--
 <div>
   <div>
     <div class="mb-3">
@@ -184,20 +125,15 @@
 </div>
 -->
 
-<div>
-  <div>
-    <div class="mb-3">
-      <label for="fifa" class="form-label">Fifa Code</label>
-      <input class="form-control"
-      name="fifa"
-      placeholder="fifa"
-      [(ngModel)]="country.fifa"
-      name="fifa"
-    />
-  </div>
-</div>
-</div>
-
+      <div>
+        <div>
+          <div class="mb-3">
+            <label for="fifa" class="form-label">Fifa Code</label>
+            <input class="form-control" name="fifa" placeholder="fifa" [(ngModel)]="country.fifa" name="fifa" />
+          </div>
+        </div>
+      </div>
+      <!--
 <div>
 <div>
   <div class="mb-3">
@@ -211,19 +147,15 @@
 </div>
 </div>
 </div>
-
-<div>
-    <div class="mb-3">
-      <label for="timezones" class="form-label">Timezone</label>
-      <input class="form-control"
-      name="timezones"
-      placeholder="timezones"
-      [(ngModel)]="country.timezones"
-      name="timezones"
-    />
-  </div>
-  </div>
-<!--
+-->
+      <div>
+        <div class="mb-3">
+          <label for="timezones" class="form-label">Timezone</label>
+          <input class="form-control" name="timezones" placeholder="timezones" [(ngModel)]="country.timezones"
+            name="timezones" />
+        </div>
+      </div>
+      
   <div>
     <div class="mb-3">
       <label for="coatOfArms" class="form-label">Coat of Arms</label>
@@ -235,36 +167,38 @@
     />
   </div>
   </div>
--->
-  
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" [ngModel]="country.independent" name="independent">
-  <label class="form-check-label" for="flexCheckDefault">
-    Independent
-  </label>
-</div>
-
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" [ngModel]="country.unMember" name="unMember">
-  <label class="form-check-label" for="flexCheckDefault">
-    U.N. Member
-  </label>
-</div>
-
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" [ngModel]="country.landlocked" name="landlocked">
-  <label class="form-check-label" for="flexCheckDefault">
-    Land Locked
-  </label>
-</div>
 
 
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" [ngModel]="country.independent" name="independent">
+        <label class="form-check-label" for="flexCheckDefault">
+          Independent
+        </label>
+      </div>
 
-</form>
-</div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" [ngModel]="country.unMember" name="unMember">
+        <label class="form-check-label" for="flexCheckDefault">
+          U.N. Member
+        </label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" [ngModel]="country.landlocked" name="landlocked">
+        <label class="form-check-label" for="flexCheckDefault">
+          Land Locked
+        </label>
+      </div>
+
+
+
+    </form>
+  </div>
+  <!--
 <div class="container mb-3 mr-3">
   <button (click)="onSubmit(f)" [ngClass]="'btn btn-primary'" placement="top-start" ngbTooltip="ngClass with string" tooltipClass="mb-1" [animation]="true">Submit</button>
   <button [ngClass]="['btn','btn-danger', ' mr-1']" placement="top" ngbTooltip="ngClass with array" tooltipClass="mb-1" [animation]="true">Reset</button>
   <button [ngClass]="{'btn':true, 'btn-secondary':true, 'mr-1':true}" placement="top" ngbTooltip="ngClass based on boolean value" tooltipClass="mb-1" [animation]="true">Confirm</button>
 </div>
+-->
 </body>

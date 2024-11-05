@@ -1,72 +1,53 @@
 import { Component, ViewChild,  Inject, Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CountryService } from './services/country.service';
+import { NewsService } from './services/news.service';
 import { OnInit } from '@angular/core';
-import { Country } from './model/country.model';
-import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { CountryFull } from './model/country.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  providers: [CountryService],
+  providers: [CountryService, NewsService],
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   @ViewChild('f', {static: false}) countryForm: NgForm;
-  country: Country;
-  submitCountry : Country;
+
+  defaultCountry = 'Ireland';
+  country: CountryFull;
+  submitCountry : CountryFull;
   countries: string[] = [];
   selectedCountry: string = 'Ireland';
   toolTipVisible: boolean = false;
 
-  constructor(private countryService: CountryService) {
-
-
-    //this.submitCountry = {...this.country};
-    //this.signupForm = '';
-
+  constructor(private countryService: CountryService,
+              private newsService: NewsService
+  ) {
   }
 
 
   ngOnInit() {
-    this.country ={
-      name: '',
-      capital: '',
-      officialName: '',
-      region: '',
-      subregion: '',
-      continent: '',
-      tld: '',
-      cca2: '',
-      cca3: '',
-      independent: '',
-      population: '',
-      googleMaps: '',
-      flagpng: '',
-      flagsvg: '',
-      flagalt: '',
-      fifa: '',
-      drivingLane: '',
-      unMember: '',
-      landlocked: '',
-      timezones: '',
-      coatOfArms: '',
-    };
     this.countryService.getCountryNames().subscribe({
-      //next: data => {return data.flat();
       next: (data) => {
         this.countries = data;
       },
     });
 
-    this.countryService.getCountry(this.selectedCountry).subscribe({
-      next: (data) => (this.country = data),
+    this.countryService.getCountry(this.selectedCountry)
+    .subscribe({
+      next: (data) => (this.country = data[0]),
     });
-  }
+
+    this.newsService.getNews(this.defaultCountry)
+    .subscribe(news => console.log(news));
+    }
 
   onCountryChange(value: any): void {
-    this.countryService.getCountry(value).subscribe({
-      next: (data) => (this.country = data,
+    console.log(this.selectedCountry);
+    this.countryService.getCountry(value)
+    .subscribe({
+      next: (data) => (this.country = data[0],
         console.log(this.country)
       ),
     });
