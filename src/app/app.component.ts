@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   countries: string[] = [];
   selectedCountry: string = 'Ireland';
   toolTipVisible: boolean = false;
+  news: any;
 
   constructor(private countryService: CountryService,
               private newsService: NewsService
@@ -40,7 +41,7 @@ export class AppComponent implements OnInit {
     });
 
     this.newsService.getNews(this.defaultCountry)
-    .subscribe(news => console.log(news));
+    .subscribe(news => this.news = news);
     }
 
   onCountryChange(value: any): void {
@@ -51,6 +52,8 @@ export class AppComponent implements OnInit {
         console.log(this.country)
       ),
     });
+    this.newsService.getNews(this.selectedCountry.toLowerCase())
+    .subscribe(news => this.news = news);
   }
 
   onSubmit(form: NgForm)
