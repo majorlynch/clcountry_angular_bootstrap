@@ -4,7 +4,7 @@
     <!--<app-header />-->
     <div class="col-lg-6">
       <h2>Country Details</h2>
-      <div class="mt-3">
+      <div class="mt-3 m-3">
         <form #f="ngForm">
           <div>
             <label for="selectedCountry" class="form-label">Select Country</label>
@@ -203,19 +203,22 @@
       <h2>News</h2>
       <div class="container">
         <h3>Headlines</h3>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 mb-1">
           @for (item of news; track item) {
-            <div class="card" style="width: 18rem;">
+            <div class="card pl-1">
               <div class="card-body">
                 <h5 class="card-title">{{item.sectionName}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{item.type}}</h6>
                 <h6 class="card-subtitle mb-2 text-muted">{{item.webPublicationDate | date}}</h6>
                 <p class="card-text">{{item.webTitle}}</p>
-                <a href="{{safeUrl(item.webUrl)}}" class="card-link">Click to read</a>
+                <a [href]="item.webUrl" class="card-link">Click to read</a>
               </div>
             </div>
             }
+        </div>
+        <hr>
+      </div>
+    </div>
 
-      </div>
-      </div>
   </div>
 </body>
