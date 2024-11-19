@@ -1,5 +1,5 @@
 
-export interface Country {
+export interface CountryModel{
     capital: string;
     name: string;
     officialName: string;
@@ -23,7 +23,7 @@ export interface Country {
     coatOfArms: string;
 }
 
-export interface CountryFull
+export interface CountryFullModel
     {
       name: {
         common: string,

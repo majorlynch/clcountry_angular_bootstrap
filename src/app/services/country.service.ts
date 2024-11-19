@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { map, tap, filter  } from 'rxjs';
-import { CountryFull } from '../model/country.model';
+import { CountryFullModel } from '../model/country.model';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +17,7 @@ export class CountryService {
 
   getCountry(country:string) {
     return this.http
-      .get<CountryFull[]>('https://restcountries.com/v3.1/name/'+country)
+      .get<CountryFullModel[]>('https://restcountries.com/v3.1/name/'+country)
       .pipe(
           tap(x => console.log('before', x)),
           map(x => x.filter(a => a.name.common === country)),
@@ -25,7 +25,7 @@ export class CountryService {
       );
   }
 
-  getCountryNames<CountryFull>() {
+  getCountryNames<CountryFullModel>() {
     return this.http.get<any[]>('https://restcountries.com/v3.1/all').pipe(
       map((countries) =>
         countries.map((country) => {

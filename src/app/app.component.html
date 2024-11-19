@@ -203,27 +203,14 @@
       <h2>News</h2>
       <div class="container">
         <h3>Headlines</h3>
-        @for (item of news.response.leadContent; track item) {
-          <div class="card" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">{{item.sectionName}}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">{{item.type}}</h6>
-              <h6 class="card-subtitle mb-2 text-muted">{{item.webPublicationDate | date}}</h6>
-              <p class="card-text">{{item.webTitle}}</p>
-              <a href=`{{item.webUrl}}` class="card-link">Click to read</a>
-              <a href="#" class="card-link">Another link</a>
-            </div>
-          </div>
-          }
-          @for (item of news.response.results; track item) {
+          @for (item of news; track item) {
             <div class="card" style="width: 18rem;">
               <div class="card-body">
                 <h5 class="card-title">{{item.sectionName}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{item.type}}</h6>
                 <h6 class="card-subtitle mb-2 text-muted">{{item.webPublicationDate | date}}</h6>
                 <p class="card-text">{{item.webTitle}}</p>
-                <a href=`{{item.webUrl}}` class="card-link">Click to read</a>
-                <a href="#" class="card-link">Another link</a>
+                <a href="{{safeUrl(item.webUrl)}}" class="card-link">Click to read</a>
               </div>
             </div>
             }
