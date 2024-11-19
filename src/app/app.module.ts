@@ -11,10 +11,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppHeaderComponent } from './components/app-header/app-header.component';
 import { UtilityService } from './services/utility.service.service';
+import { WeatherService } from './services/weather.service';
+
 @NgModule({
   declarations: [AppComponent, AppHeaderComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule, BrowserAnimationsModule, NgbModule, NgbTooltipModule],
-  providers: [CountryService, NewsService, UtilityService],
+  providers: [CountryService, NewsService, WeatherService,  UtilityService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

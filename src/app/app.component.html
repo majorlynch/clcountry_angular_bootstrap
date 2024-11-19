@@ -202,22 +202,52 @@
     <div class="col-lg-6">
       <h2>News</h2>
       <div class="container">
-        <h3>Headlines</h3>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 mb-1">
+        <h3>The Guardian</h3>
+        <div class="">
           @for (item of news; track item) {
-            <div class="card pl-1">
+            <div class="card">
+              <div class="card-header">
+                <h5>{{item.sectionName}} <i class="fa-regular fa-newspaper"></i></h5>
+              </div>
               <div class="card-body">
-                <h5 class="card-title">{{item.sectionName}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{item.type}}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">{{item.webPublicationDate | date}}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">{{item.webPublicationDate | date:'medium'}}</h6>
                 <p class="card-text">{{item.webTitle}}</p>
                 <a [href]="item.webUrl" class="card-link">Click to read</a>
-              </div>
+              </div><!--
+              <div class="card-footer">
+                <small class="text-muted">Last updated  ago</small>
+                 {{ getTimeDifference(item.webPublicationDate) }} 
+              </div>-->
             </div>
             }
         </div>
         <hr>
       </div>
+      <div class="container">
+        <h3>Headlines</h3>
+        <div class="">
+          @for (item of leadContent; track item) {
+            <div class="card">
+              <div class="card-header">
+                <h5>{{item.sectionName}} <i class="fa-regular fa-newspaper"></i></h5>
+              </div>
+              <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">{{item.type}}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">{{item.webPublicationDate | date:'medium'}}</h6>
+                <p class="card-text">{{item.webTitle}}</p>
+                <a [href]="item.webUrl" class="card-link">Click to read</a>
+              </div><!--
+              <div class="card-footer">
+                <small class="text-muted">Last updated  ago</small>
+                 {{ getTimeDifference(item.webPublicationDate) }} 
+              </div>-->
+            </div>
+            }
+        </div>
+        <hr>
+      </div>
+
     </div>
 
   </div>

@@ -4,13 +4,15 @@ import { CountryService } from './services/country.service';
 import { NewsService } from './services/news.service';
 import { OnInit } from '@angular/core';
 import { CountryFullModel } from './model/country.model';
+import { WeatherInputModel } from './model/weather.model';
 import { NewsModel } from './model/news.model';
 import { UtilityService } from './services/utility.service.service';
+import { WeatherService } from './services/weather.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  providers: [CountryService, NewsService],
+  providers: [CountryService, NewsService, WeatherService],
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
@@ -19,16 +21,19 @@ export class AppComponent implements OnInit {
   defaultCountry = 'Ireland';
   country: CountryFullModel;
   submitCountry: CountryFullModel;
+  leadContent: NewsModel[];
   news: NewsModel[];
   countries: string[] = [];
   selectedCountry: string = 'Ireland';
   toolTipVisible: boolean = false;
+  weatherData: any;
 
   constructor(
     private countryService: CountryService,
     private newsService: NewsService,
+    private weatherService: WeatherService,
     private utilityService: UtilityService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.countryService.getCountryNames().subscribe({
@@ -37,13 +42,26 @@ export class AppComponent implements OnInit {
       },
     });
 
+    const weatherParams: WeatherInputModel = {
+      latitude: 52.52,
+      longitude: 13.41,
+      hourly: "temperature_2m"
+    };
+
+    this.weatherService.getWeather(weatherParams).subscribe({
+      next: (data) => {
+        this.weatherData = data;
+        console.log(this.weatherData);
+      }
+    });
+
     this.countryService.getCountry(this.selectedCountry).subscribe({
       next: (data) => (this.country = data[0]),
     });
 
     this.newsService
       .getNews(this.defaultCountry)
-      .subscribe({next:(news: any) => (this.news = news.response.leadContent)});
+      .subscribe({ next: (news: any) => { this.leadContent = news.response.leadContent; this.news = news.response.results; } });
   }
 
   onCountryChange(value: any): void {
@@ -53,14 +71,11 @@ export class AppComponent implements OnInit {
     });
     this.newsService
       .getNews(this.selectedCountry.toLowerCase())
-      .subscribe({next:(news: any) => (this.news = news.response.leadContent)}
-      //{complete:() => this.news = this.news.array.forEach((e : any) => {e.webUrl = this.utilityService.sanitizeUrl(e.webUrl)})})
-  );
+      .subscribe({ next: (news: any) => { this.leadContent = news.response.leadContent; this.news = news.response.results; console.log(this.news); } }
+      );
   }
 
-  safeUrl( url: string) {
-    return this.utilityService.sanitizeUrl(url);
-  }
+  getTimeDifference(targetDate: Date): string { const currentDate = new Date(); const difference = targetDate.getTime() - currentDate.getTime(); const days = Math.floor(difference / (1000 * 60 * 60 * 24)); const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)); const seconds = Math.floor((difference % (1000 * 60)) / 1000); return `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`; }
 
   onSubmit(form: NgForm) {
     console.log(form);
