@@ -65,14 +65,28 @@ export class AppComponent implements OnInit {
   }
 
   onCountryChange(value: any): void {
+    const weatherParams: WeatherInputModel = {
+      latitude: 53,
+      longitude: -8,
+      hourly: "temperature_2m"
+    };
+    
     console.log(this.selectedCountry);
     this.countryService.getCountry(value).subscribe({
       next: (data) => ((this.country = data[0]), console.log(this.country)),
     });
+
     this.newsService
       .getNews(this.selectedCountry.toLowerCase())
       .subscribe({ next: (news: any) => { this.leadContent = news.response.leadContent; this.news = news.response.results; console.log(this.news); } }
       );
+
+    this.weatherService.getWeather(weatherParams).subscribe({
+      next: (data) => {
+        this.weatherData = data;
+        console.log(this.weatherData);
+      }
+    });
   }
 
   getTimeDifference(targetDate: Date): string { const currentDate = new Date(); const difference = targetDate.getTime() - currentDate.getTime(); const days = Math.floor(difference / (1000 * 60 * 60 * 24)); const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)); const seconds = Math.floor((difference % (1000 * 60)) / 1000); return `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`; }
