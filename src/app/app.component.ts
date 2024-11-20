@@ -43,8 +43,8 @@ export class AppComponent implements OnInit {
     });
 
     const weatherParams: WeatherInputModel = {
-      latitude: 52.52,
-      longitude: 13.41,
+      latitude: 53,
+      longitude: -8,
       hourly: "temperature_2m"
     };
 
