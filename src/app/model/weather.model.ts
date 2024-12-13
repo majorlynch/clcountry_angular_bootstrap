@@ -1,6 +1,6 @@
 export interface WeatherInputModel {
-    latitude: number,
-    longitude: number,
+    latitude: string,
+    longitude: string,
     hourly: string,
     startDate?: Date,
     endDate?: Date,

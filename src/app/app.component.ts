@@ -42,22 +42,27 @@ export class AppComponent implements OnInit {
       },
     });
 
+
+
+    this.countryService.getCountry(this.selectedCountry).subscribe({
+      next: (data) => (this.country = data[0]),
+    });
+    
     const weatherParams: WeatherInputModel = {
-      latitude: 53,
-      longitude: -8,
+      latitude: this.country.latlng[0],
+      longitude: this.country.latlng[1],
       hourly: "temperature_2m"
     };
 
     this.weatherService.getWeather(weatherParams).subscribe({
       next: (data) => {
+        console.log('HEY');
+        console.log(weatherParams);
         this.weatherData = data;
         console.log(this.weatherData);
       }
     });
-
-    this.countryService.getCountry(this.selectedCountry).subscribe({
-      next: (data) => (this.country = data[0]),
-    });
+    
 
     this.newsService
       .getNews(this.defaultCountry)
@@ -65,16 +70,15 @@ export class AppComponent implements OnInit {
   }
 
   onCountryChange(value: any): void {
-    const weatherParams: WeatherInputModel = {
-      latitude: 53,
-      longitude: -8,
-      hourly: "temperature_2m"
-    };
-    
     console.log(this.selectedCountry);
     this.countryService.getCountry(value).subscribe({
       next: (data) => ((this.country = data[0]), console.log(this.country)),
     });
+    const weatherParams: WeatherInputModel = {
+      latitude: this.country.latlng[0],
+      longitude: this.country.latlng[1],
+      hourly: "temperature_2m"
+    };
 
     this.newsService
       .getNews(this.selectedCountry.toLowerCase())
