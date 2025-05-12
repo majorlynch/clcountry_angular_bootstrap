@@ -23,7 +23,11 @@
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+<<<<<<< HEAD
     "chart.js": "^4.4.6",
+=======
+    "chartjs": "^0.3.24",
+>>>>>>> f54556f99b8ff8296615ac72c4b210597446e3ce
     "font-awesome": "^4.7.0",
     "gulp": "^5.0.0",
     "openmeteo": "^1.1.4",
