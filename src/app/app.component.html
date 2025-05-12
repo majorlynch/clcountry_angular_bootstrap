@@ -21,11 +21,11 @@
             <div class="row">
             <div class="mb-3 col-4">
               <label for="countryName" class="form-label">Country</label>
-              <input class="form-control form-control-sm" name="countryName" placeholder="name"
+              <input readonly class="form-control-plaintext" name="countryName" placeholder="name"
                 [(ngModel)]="country.name.common" name="country.name" />
               </div>
             
-              <div class="col ml-2 align-right border">
+              <div class="col ml-2 align-right">
               <a href="#" class="align-right" data-bs-toggle="tooltip" data-bs-title="country.flagalt">
                 <img [src]="country.flags.png" class="rounded float-end align-right" [alt]="country.flags.alt" loading="eager" />
               </a>
@@ -38,12 +38,13 @@
                 <input class=" form-control" id="capital" name="capital" placeholder="capital"
                   [(ngModel)]="country.capital" name="country.capital" />
                 </div>
-
+<!--
                 <div class="col">
                 <label for="officialName" class="form-label">Official Name</label>
                 <input class="form-control" name="officialName" placeholder="officialName"
                   [(ngModel)]="country.name.official" name="country.officialName" />
               </div>
+              -->
             </div>
           <div>
             <div>
